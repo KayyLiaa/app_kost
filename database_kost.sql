@@ -7,4 +7,9 @@ CREATE TABLE tb_penghuni (
     tgl_keluar DATE
 );
 
+CREATE TABLE tb_kamar (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nomor VARCHAR(10),
+    harga DECIMAL(12,2)
+);
 
