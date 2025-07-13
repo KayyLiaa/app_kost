@@ -29,4 +29,12 @@ CREATE TABLE tb_kmr_penghuni (
     FOREIGN KEY (id_penghuni) REFERENCES tb_penghuni(id)
 );
 
+CREATE TABLE tb_brng_bawaan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_penghuni INT,
+    id_barang INT,
+    FOREIGN KEY (id_penghuni) REFERENCES tb_penghuni(id),
+    FOREIGN KEY (id_barang) REFERENCES tb_barang(id)
+);
+
 
