@@ -13,3 +13,10 @@ CREATE TABLE tb_kamar (
     harga DECIMAL(12,2)
 );
 
+CREATE TABLE tb_barang (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100),
+    harga DECIMAL(12,2)
+);
+
+
