@@ -19,4 +19,14 @@ CREATE TABLE tb_barang (
     harga DECIMAL(12,2)
 );
 
+CREATE TABLE tb_kmr_penghuni (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_kamar INT,
+    id_penghuni INT,
+    tgl_masuk DATE,
+    tgl_keluar DATE,
+    FOREIGN KEY (id_kamar) REFERENCES tb_kamar(id),
+    FOREIGN KEY (id_penghuni) REFERENCES tb_penghuni(id)
+);
+
 
