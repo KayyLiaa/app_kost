@@ -37,4 +37,12 @@ CREATE TABLE tb_brng_bawaan (
     FOREIGN KEY (id_barang) REFERENCES tb_barang(id)
 );
 
+CREATE TABLE tb_tagihan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    bulan VARCHAR(20),
+    id_kmr_penghuni INT,
+    jml_tagihan DECIMAL(12,2),
+    FOREIGN KEY (id_kmr_penghuni) REFERENCES tb_kmr_penghuni(id)
+);
+
 
