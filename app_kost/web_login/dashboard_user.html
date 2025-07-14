@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard User - Ruang Teduh</title>
+  <link rel="stylesheet" href="dashboard_user.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <h2>Ruang Teduh</h2>
+      <ul>
+        <li class="menu-item active" data-menu="beranda">🏠 Beranda</li>
+        <li class="menu-item" data-menu="profil">🧑‍💼 Profil</li>
+        <li class="menu-item" data-menu="tagihan">💳 Tagihan</li>
+        <li class="menu-item" data-menu="logout">📋 Logout</li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <section class="section-beranda section-content">
+        <div class="beranda-header">
+          <div class="beranda-avatar">🏠</div>
+          <div>
+            <h1>Selamat Datang di Ruang Teduh!</h1>
+            <p>Senang melihatmu kembali, <b>User Dummy</b>! Semoga harimu menyenangkan 😊</p>
+          </div>
+        </div>
+        <div class="beranda-stats">
+          <div class="beranda-card">
+            <div class="beranda-card-icon">🛏️</div>
+            <div>
+              <div class="beranda-card-label">Jumlah Kamar</div>
+              <div class="beranda-card-value">12</div>
+            </div>
+          </div>
+          <div class="beranda-card">
+            <div class="beranda-card-icon">🚪</div>
+            <div>
+              <div class="beranda-card-label">Kamar Kosong</div>
+              <div class="beranda-card-value">3</div>
+            </div>
+          </div>
+          <div class="beranda-card">
+            <div class="beranda-card-icon">💸</div>
+            <div>
+              <div class="beranda-card-label">Tagihan Belum Lunas</div>
+              <div class="beranda-card-value">1</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-profil section-content" style="display:none;">
+        <h2>Profil Saya</h2>
+        <div class="profile-card">
+          <div class="profile-avatar">🧑‍💼</div>
+          <div class="profile-info">
+            <div class="profile-row"><span class="profile-label">Nama</span><span class="profile-value">User Dummy</span></div>
+            <div class="profile-row"><span class="profile-label">Email</span><span class="profile-value">user@email.com</span></div>
+            <div class="profile-row"><span class="profile-label">No. HP</span><span class="profile-value">08123456789</span></div>
+            <div class="profile-row"><span class="profile-label">Alamat</span><span class="profile-value">Jl. Contoh No. 123, Kota</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="section-tagihan section-content" style="display:none;">
+        <h2>Tagihan Saya</h2>
+        <div class="tagihan-summary">
+          <div class="tagihan-summary-icon">💳</div>
+          <div>
+            <div class="tagihan-summary-label">Total Tagihan</div>
+            <div class="tagihan-summary-value">Rp 1.200.000</div>
+          </div>
+        </div>
+        <div class="tagihan-table-card">
+          <table class="tagihan-table">
+            <thead>
+              <tr>
+                <th>Bulan</th>
+                <th>Jumlah</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Januari 2024</td>
+                <td>Rp 400.000</td>
+                <td><span class="status-lunas">Lunas</span></td>
+              </tr>
+              <tr>
+                <td>Februari 2024</td>
+                <td>Rp 400.000</td>
+                <td><span class="status-lunas">Lunas</span></td>
+              </tr>
+              <tr>
+                <td>Maret 2024</td>
+                <td>Rp 400.000</td>
+                <td><span class="status-belum">Belum Lunas</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tagihan-empty" style="display:none;">
+          <p><strong>Belum ada tagihan.</strong></p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const menuItems = document.querySelectorAll('.menu-item');
+    const sections = {
+      beranda: document.querySelector('.section-beranda'),
+      profil: document.querySelector('.section-profil'),
+      tagihan: document.querySelector('.section-tagihan')
+    };
+    menuItems.forEach(item => {
+      item.addEventListener('click', function() {
+        menuItems.forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+        const menu = this.getAttribute('data-menu');
+        Object.keys(sections).forEach(key => {
+          sections[key].style.display = (key === menu) ? 'block' : 'none';
+        });
+        if(menu === 'logout') {
+          window.location.href = 'index.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html> 

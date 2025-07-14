@@ -1,0 +1,295 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: #2193b0;
+  color: #fff;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sidebar h2 {
+  margin: 0 0 2rem 0;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background: transparent;
+  transition: background 0.2s, box-shadow 0.2s;
+  border: none;
+}
+
+.menu-item.active, .menu-item:hover {
+  background: #176582;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.main-content {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 3rem 4rem;
+  min-height: 100vh;
+}
+
+.section-content {
+  display: block;
+}
+
+.profile-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+  padding: 2.5rem 2rem;
+  max-width: 400px;
+  margin: 2rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #e0f7fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(33,147,176,0.12);
+}
+
+.profile-info {
+  width: 100%;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-label {
+  color: #2193b0;
+  font-weight: 600;
+}
+
+.profile-value {
+  color: #176582;
+  font-weight: 400;
+}
+
+.beranda-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.beranda-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #e0f7fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  box-shadow: 0 2px 8px rgba(33,147,176,0.12);
+}
+
+.beranda-stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.beranda-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+  padding: 1.5rem 2rem;
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.beranda-card-icon {
+  font-size: 2.2rem;
+  background: #e0f7fa;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(33,147,176,0.10);
+}
+
+.beranda-card-label {
+  color: #2193b0;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.beranda-card-value {
+  color: #176582;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.tagihan-summary {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  padding: 1.2rem 2rem;
+  max-width: 350px;
+  margin: 0 auto 2rem auto;
+}
+
+.tagihan-summary-icon {
+  font-size: 2.5rem;
+  background: #e0f7fa;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(33,147,176,0.10);
+}
+
+.tagihan-summary-label {
+  color: #2193b0;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tagihan-summary-value {
+  color: #176582;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.tagihan-table-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  padding: 1.5rem 2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.tagihan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.tagihan-table th, .tagihan-table td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.tagihan-table th {
+  background: #f1f7fa;
+  color: #2193b0;
+}
+
+.status-lunas {
+  background: #d4f8e8;
+  color: #1ca97c;
+  padding: 0.3em 1em;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.98em;
+}
+
+.status-belum {
+  background: #ffe0e0;
+  color: #e74c3c;
+  padding: 0.3em 1em;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.98em;
+}
+
+.tagihan-empty {
+  text-align: center;
+  color: #888;
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  .main-content {
+    padding: 1rem;
+  }
+  .profile-card {
+    padding: 1.2rem 0.5rem;
+  }
+  .beranda-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  .beranda-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .tagihan-summary, .tagihan-table-card {
+    padding: 1rem 0.5rem;
+  }
+  .tagihan-summary {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+} 
