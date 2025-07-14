@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Kosan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="slide-container" id="slideContainer">
+    <div class="slide-image" id="slideImage">
+      <img src="/app_kost/web_login/img/user.jpg" alt="User" id="imgSide" class="side-image">
+    </div>
+    <div class="slide-form" id="slideForm">
+      <form id="loginForm">
+        <h2 id="formTitle">User</h2>
+        <input type="text" placeholder="Username" id="username" required>
+        <input type="password" placeholder="Password" id="password" required>
+        <button type="submit">Login</button>
+        <div id="switchButtons">
+          <button type="button" id="switchRoleBtn" class="switch-btn">Admin</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    let isAdmin = false;
+    const slideContainer = document.getElementById('slideContainer');
+    const formTitle = document.getElementById('formTitle');
+    const imgSide = document.getElementById('imgSide');
+    const switchButtons = document.getElementById('switchButtons');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const loginForm = document.getElementById('loginForm');
+
+    function updateSwitchButton() {
+      if (isAdmin) {
+        switchButtons.innerHTML = '<button type="button" id="switchRoleBtn" class="switch-btn">User</button>';
+      } else {
+        switchButtons.innerHTML = '<button type="button" id="switchRoleBtn" class="switch-btn">Admin</button>';
+      }
+      document.getElementById('switchRoleBtn').onclick = switchRoleHandler;
+    }
+
+    function switchRoleHandler(e) {
+      e.preventDefault();
+      isAdmin = !isAdmin;
+      slideContainer.classList.toggle('admin-active', isAdmin);
+      if (isAdmin) {
+        formTitle.textContent = 'Admin';
+        imgSide.src = '/app_kost/web_login/img/admin.jpg';
+        imgSide.alt = 'Admin';
+        username.placeholder = 'Admin Username';
+      } else {
+        formTitle.textContent = 'User';
+        imgSide.src = '/app_kost/web_login/img/user.jpg';
+        imgSide.alt = 'User';
+        username.placeholder = 'Username';
+      }
+      updateSwitchButton();
+    }
+
+    document.getElementById('switchRoleBtn').onclick = switchRoleHandler;
+
+    // Login logic
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = username.value.trim();
+      const pass = password.value.trim();
+      // Validasi dummy: tidak boleh kosong
+      if (!user || !pass) {
+        alert('Username dan password harus diisi!');
+        return;
+      }
+      if (isAdmin) {
+        window.location.href = 'dashboard_admin.html';
+      } else {
+        window.location.href = 'dashboard_user.html';
+      }
+    });
+  </script>
+</body>
+</html> 

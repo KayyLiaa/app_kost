@@ -1,0 +1,140 @@
+body {
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-container {
+  display: flex;
+  width: 800px;
+  max-width: 100vw;
+  min-height: 480px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.3s;
+}
+
+.slide-image, .slide-form {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+.slide-image {
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  position: relative;
+  z-index: 1;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
+.side-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+}
+
+.slide-form {
+  background: #fff;
+  z-index: 2;
+  position: relative;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.slide-form form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+}
+
+.slide-form h2 {
+  margin-bottom: 1.5rem;
+  color: #2193b0;
+}
+
+.slide-form input {
+  background: #f6f6f6;
+  border: 1px solid #2193b0;
+  border-radius: 6px;
+  margin: 8px 0;
+  padding: 12px;
+  font-size: 1rem;
+}
+
+.slide-form button {
+  margin-top: 1rem;
+  padding: 12px;
+  background: #2193b0;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.slide-form button:hover {
+  background: #176582;
+}
+
+.switch-btn {
+  margin-top: 1.2rem;
+  padding: 12px;
+  width: 100%;
+  background: #fff;
+  color: #2193b0;
+  border: 2px solid #2193b0;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-sizing: border-box;
+}
+.switch-btn:hover {
+  background: #2193b0;
+  color: #fff;
+}
+
+/* Animasi geser konten saat admin aktif */
+.slide-container.admin-active .slide-image {
+  transform: translateX(100%);
+}
+.slide-container.admin-active .slide-form {
+  transform: translateX(-100%);
+}
+
+@media (max-width: 900px) {
+  .slide-container {
+    width: 100vw;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+  .side-image {
+    max-width: 150px;
+  }
+} 
