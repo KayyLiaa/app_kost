@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin Kosan</title>
+  <link rel="stylesheet" href="dashboard_admin.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <h2>Ruang Teduh</h2>
+      <ul>
+        <li class="menu-item active" data-menu="beranda">🏠 Beranda</li>
+        <li class="menu-item" data-menu="kamar">🛏️ Kamar</li>
+        <li class="menu-item" data-menu="penghuni">👥 Penghuni</li>
+        <li class="menu-item" data-menu="tambah">➕ Tambah Data</li>
+        <li class="menu-item" data-menu="logout">🚪 Logout</li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <section class="section-beranda section-content">
+        <header>
+          <h1>Selamat Datang, <span id="adminName">Admin</span>!</h1>
+        </header>
+        <section class="stats">
+          <div class="stat-card">
+            <h3>Total Kamar</h3>
+            <p id="totalKamar">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Kamar Kosong</h3>
+            <p id="kamarKosong">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Penghuni</h3>
+            <p id="totalPenghuni">0</p>
+          </div>
+        </section>
+      </section>
+      <section class="section-kamar section-content" style="display:none;">
+        <div class="data-table">
+          <h2>Daftar Kamar</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Kamar</th>
+                <th>Status</th>
+                <th>Penyewa</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tableKamar">
+              <!-- Data kamar dari backend -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section-penghuni section-content" style="display:none;">
+        <div class="data-table">
+          <h2>Daftar Penghuni</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Penghuni</th>
+                <th>Kamar</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tablePenghuni">
+              <!-- Data penghuni dari backend -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section-tambah section-content" style="display:none;">
+        <div class="tambah-header">
+          <div class="tambah-icon">➕</div>
+          <div>
+            <h2>Tambah Data</h2>
+            <p>Pilih jenis data yang ingin kamu tambahkan ke sistem Ruang Teduh.</p>
+          </div>
+        </div>
+        <div class="tambah-card-container">
+          <div class="tambah-card">
+            <div class="tambah-card-icon">🛏️</div>
+            <div class="tambah-card-title">Tambah Kamar</div>
+            <div class="tambah-card-desc">Tambahkan kamar baru ke daftar kosan.</div>
+            <button class="aksi-btn" id="btnShowFormKamar">Tambah Kamar</button>
+          </div>
+          <div class="tambah-card">
+            <div class="tambah-card-icon">👤</div>
+            <div class="tambah-card-title">Tambah Penghuni</div>
+            <div class="tambah-card-desc">Masukkan data penghuni baru ke sistem.</div>
+            <button class="aksi-btn" id="btnShowFormPenghuni">Tambah Penghuni</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <!-- Modal Tambah Kamar -->
+  <div id="modalTambahKamar" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+      <form id="formTambahKamar" class="form-tambah-kamar" autocomplete="off">
+        <h3 style="color:#2193b0; margin-top:0;">Tambah Kamar</h3>
+        <div class="form-group">
+          <label for="namaKamar">Nama Kamar</label>
+          <input type="text" id="namaKamar" name="namaKamar" required />
+        </div>
+        <div class="form-group">
+          <label for="statusKamar">Status</label>
+          <select id="statusKamar" name="statusKamar">
+            <option value="Kosong">Kosong</option>
+            <option value="Terisi">Terisi</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="hargaKamar">Harga</label>
+          <input type="number" id="hargaKamar" name="hargaKamar" min="0" required />
+        </div>
+        <div class="form-group">
+          <label for="fasilitasKamar">Fasilitas</label>
+          <textarea id="fasilitasKamar" name="fasilitasKamar" rows="2"></textarea>
+        </div>
+        <div class="form-btn-group">
+          <button type="submit" class="aksi-btn">Simpan</button>
+          <button type="button" class="aksi-btn-batal">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Modal Tambah Penghuni -->
+  <div id="modalTambahPenghuni" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+      <form id="formTambahPenghuni" class="form-tambah-kamar" autocomplete="off">
+        <h3 style="color:#2193b0; margin-top:0;">Tambah Penghuni</h3>
+        <div class="form-group">
+          <label for="namaPenghuni">Nama Penghuni</label>
+          <input type="text" id="namaPenghuni" name="namaPenghuni" required />
+        </div>
+        <div class="form-group">
+          <label for="kamarPenghuni">Kamar</label>
+          <input type="text" id="kamarPenghuni" name="kamarPenghuni" required />
+        </div>
+        <div class="form-group">
+          <label for="nohpPenghuni">No HP</label>
+          <input type="text" id="nohpPenghuni" name="nohpPenghuni" required />
+        </div>
+        <div class="form-group">
+          <label for="statusPenghuni">Status</label>
+          <select id="statusPenghuni" name="statusPenghuni">
+            <option value="Aktif">Aktif</option>
+            <option value="Nonaktif">Nonaktif</option>
+          </select>
+        </div>
+        <div class="form-btn-group">
+          <button type="submit" class="aksi-btn">Simpan</button>
+          <button type="button" class="aksi-btn-batal">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    const menuItems = document.querySelectorAll('.menu-item');
+    const sections = {
+      beranda: document.querySelector('.section-beranda'),
+      kamar: document.querySelector('.section-kamar'),
+      penghuni: document.querySelector('.section-penghuni'),
+      tambah: document.querySelector('.section-tambah')
+    };
+    menuItems.forEach(item => {
+      item.addEventListener('click', function() {
+        menuItems.forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+        const menu = this.getAttribute('data-menu');
+        Object.keys(sections).forEach(key => {
+          sections[key].style.display = (key === menu) ? 'block' : 'none';
+        });
+        if(menu === 'logout') {
+          window.location.href = 'index.html';
+        }
+      });
+    });
+    // Modal Tambah Kamar Logic
+    const btnShowFormKamar = document.getElementById('btnShowFormKamar');
+    const modalTambahKamar = document.getElementById('modalTambahKamar');
+    const formTambahKamar = document.getElementById('formTambahKamar');
+    const btnBatalKamar = formTambahKamar.querySelector('.aksi-btn-batal');
+    btnShowFormKamar.addEventListener('click', function() {
+      modalTambahKamar.style.display = 'flex';
+      setTimeout(() => {
+        formTambahKamar.querySelector('input,select,textarea').focus();
+      }, 100);
+    });
+    btnBatalKamar.addEventListener('click', function() {
+      formTambahKamar.reset();
+      modalTambahKamar.style.display = 'none';
+    });
+    formTambahKamar.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Kamar berhasil ditambahkan! (dummy)');
+      formTambahKamar.reset();
+      modalTambahKamar.style.display = 'none';
+    });
+    // Tutup modal jika klik di luar form
+    modalTambahKamar.addEventListener('mousedown', function(e) {
+      if(e.target === modalTambahKamar) {
+        formTambahKamar.reset();
+        modalTambahKamar.style.display = 'none';
+      }
+    });
+
+    // Modal Tambah Penghuni Logic
+    const btnShowFormPenghuni = document.getElementById('btnShowFormPenghuni');
+    const modalTambahPenghuni = document.getElementById('modalTambahPenghuni');
+    const formTambahPenghuni = document.getElementById('formTambahPenghuni');
+    const btnBatalPenghuni = formTambahPenghuni.querySelector('.aksi-btn-batal');
+    btnShowFormPenghuni.addEventListener('click', function() {
+      modalTambahPenghuni.style.display = 'flex';
+      setTimeout(() => {
+        formTambahPenghuni.querySelector('input,select,textarea').focus();
+      }, 100);
+    });
+    btnBatalPenghuni.addEventListener('click', function() {
+      formTambahPenghuni.reset();
+      modalTambahPenghuni.style.display = 'none';
+    });
+    formTambahPenghuni.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Penghuni berhasil ditambahkan! (dummy)');
+      formTambahPenghuni.reset();
+      modalTambahPenghuni.style.display = 'none';
+    });
+    // Tutup modal jika klik di luar form
+    modalTambahPenghuni.addEventListener('mousedown', function(e) {
+      if(e.target === modalTambahPenghuni) {
+        formTambahPenghuni.reset();
+        modalTambahPenghuni.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html> 
